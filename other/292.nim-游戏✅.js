@@ -10,11 +10,6 @@
  * @return {boolean}
  */
 var canWinNim = function(n) {
-  // 4
-  // 4
-  // 5   
-  // 1    13 22 3 1
-  return n%4!==0
+    return n % 4 !== 0;
 };
 // @lc code=end
-
