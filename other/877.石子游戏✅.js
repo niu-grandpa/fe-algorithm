@@ -10,11 +10,6 @@
  * @return {boolean}
  */
 var stoneGame = function(piles) {
-  return true
-  // [1,4,3,]
-  // 7
-  // 13
-  // 47
+    return piles.length !== 0;
 };
 // @lc code=end
-
