@@ -23,7 +23,7 @@ var lengthOfLIS = function(nums) {
             h = sub.length - 1;
         while (l < h) {
             const m = l + ((h - l) >> 1);
-            if (nums[m] < n) {
+            if (sub[m] < n) {
                 l = m + 1;
             } else {
                 h = m;
