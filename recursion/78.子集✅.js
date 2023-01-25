@@ -11,17 +11,29 @@
  */
 var subsets = function(nums) {
     const ans = [];
-    const dfs = (i, temp) => {
-        if (i === nums.length) {
-            ans.push(temp.slice());
-            return;
+    // 递归法
+    // const dfs = (i, temp) => {
+    //     if (i === nums.length) {
+    //         ans.push(temp.slice());
+    //         return;
+    //     }
+    //     temp.push(nums[i]);
+    //     dfs(i + 1, temp.slice());
+    //     temp.pop();
+    //     dfs(i + 1, temp.slice());
+    // };
+    // dfs(0, []);
+    // 回溯法
+    const backtrack = (temp, i) => {
+        ans.push(temp.slice());
+        if (temp.length === nums.length) return;
+        for (let j = i; j < nums.length; j++) {
+            temp.push(nums[j]);
+            backtrack(temp.slice(), j + 1);
+            temp.pop();
         }
-        temp.push(nums[i]);
-        dfs(i + 1, temp.slice());
-        temp.pop();
-        dfs(i + 1, temp.slice());
     };
-    dfs(0, []);
+    backtrack([], 0);
     return ans;
 };
 // @lc code=end
