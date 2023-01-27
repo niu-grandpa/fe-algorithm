@@ -17,7 +17,7 @@ var combinationSum = function(candidates, target) {
     const backtrack = (temp, sum, i) => {
         if (sum > target) return;
         if (sum === target) {
-            temp.push(sum);
+            ans.push(temp.slice());
             return;
         }
         for (let j = i; j < candidates.length; j++) {
