@@ -24,10 +24,10 @@ var solveNQueens = function(n) {
         }
         for (let col = 0; col < n; col++) {
             const bad = temp.some((c, r) => {
-                return c === col || r - c === row + col || r + c === row + col;
+                return c === col || r - c === row - col || r + c === row + col;
             });
             if (bad) continue;
-            backtrack([...temp, row], row + 1);
+            backtrack([...temp, col], row + 1);
         }
     };
     backtrack([], 0);
