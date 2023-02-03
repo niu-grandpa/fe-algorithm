@@ -112,7 +112,7 @@ const list = new LinkedList();
 /*
  * 双链表
  * 6.循环链表
- * 7.排序链表
+ * 7.排序链表：即顺序表，找到表中比插入的元素大的位置，插入到前一个位置即可
  * 8.通过链表实现栈
  */
 class DbNode extends _Node {
@@ -193,3 +193,28 @@ class DbLinkedList extends LinkedList {
 }
 
 // 用链表实现栈
+class StackLinedList {
+  items: DbLinkedList;
+  constructor() {
+    this.items = new DbLinkedList();
+  }
+  push(val: any) {
+    this.items.add(val);
+  }
+  pop() {
+    const node = this.items.getNodeAt(this.size() - 1);
+    if (!node) return;
+    this.items.remove(node);
+    return node;
+  }
+  peek() {
+    if (this.isEmpty()) return;
+    return this.items.getNodeAt(this.size() - 1)?.val;
+  }
+  isEmpty() {
+    return !this.size();
+  }
+  size() {
+    return this.items.size();
+  }
+}
