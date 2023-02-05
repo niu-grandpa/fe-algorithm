@@ -6,7 +6,7 @@
  * 3.从链表移除元素
  * 4.使用 LinkedList 类
  */
-class LinkedList {
+export default class LinkedList {
   length: number;
   head?: _Node;
   constructor() {
@@ -22,7 +22,7 @@ class LinkedList {
   isEmpty() {
     return !this.length;
   }
-  add(val: number) {
+  add(val: any) {
     const node = new _Node(val);
     if (!this.head) {
       this.head = node;
@@ -88,6 +88,9 @@ class LinkedList {
       prev!.next = cur?.next;
     }
     this.length--;
+  }
+  getHead() {
+    return this.head;
   }
   toString() {
     let res = '',
