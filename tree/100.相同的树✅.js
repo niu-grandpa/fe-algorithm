@@ -21,6 +21,7 @@
 var isSameTree1 = function (p, q) {
   if (!p && !q) return true;
   if (!p || !q) return false;
+  if (p.val !== q.val) return false;
   return isSameTree1(p.left, q.left) && isSameTree1(p.right, q.right);
 
   // 层序遍历
