@@ -17,21 +17,14 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isSymmetric = function(root) {
-  const travese = (root1,root2)=>{
-    if(root1===null&&root2===null){
-      return true
-    }
-    if(root1===null||root2===null){
-      return false
-    }
-    if(root1.val===root2.val){
-      return travese(root1.left,root2.right) && travese(root1.right,root2.left)
-    }
-    return false
-  }
-
-  return travese(root.left,root.right)
+var isSymmetric = function (root) {
+  if (!root) return true;
+  const dfs = (root1, root2) => {
+    if (!root1 && !root2) return true;
+    if (!root1 || !root2) return false;
+    if (root1.val !== root2.val) return false;
+    return dfs(root1.left, root2.right) && dfs(root1.right, root2.left);
+  };
+  return dfs(root.left, root.right);
 };
 // @lc code=end
-
