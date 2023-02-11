@@ -17,23 +17,16 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var diameterOfBinaryTree = function(root) {
-  let len=0
-  function dfs(root){
-    if(root===null){
-      return 0
-    }
-    // if(root===null){
-    //   return null
-    // }
-    let left = dfs(root.left)
-    let right = dfs(root.right)
-    len = Math.max(len,left+right)
-
-    return Math.max(left,right)+1
-  }
-  dfs(root)
-  return len
+var diameterOfBinaryTree = function (root) {
+  let ans = 0;
+  const dfs = root => {
+    if (!root) return 0;
+    const left = dfs(root.left);
+    const right = dfs(root.right);
+    ans = Math.max(ans, left + right);
+    return Math.max(left, right) + 1;
+  };
+  dfs(root);
+  return ans;
 };
 // @lc code=end
-
