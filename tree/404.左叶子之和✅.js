@@ -17,23 +17,20 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var sumOfLeftLeaves = function(root) {
-  let leftSum = 0
-  function travese(node){
-    if(node===null){
-      return 
+var sumOfLeftLeaves = function (root) {
+  let ans = 0;
+  // 对两颗子树的左子树查找左子树
+  const dfs = root => {
+    if (!root) return;
+    const left = root.left;
+    // 找到没有叶子节点的左子节点
+    if (left && !left.left && !left.right) {
+      ans += left.val;
     }
-    // left是单独的节点
-    let left = node.left
-    if(left && !left.left && !left.right){
-      leftSum += left.val
-    }
-    // left有嵌套，走递归
-    travese(node.left)
-    travese(node.right)
-  }
-  travese(root) 
-  return leftSum
+    dfs(root.left);
+    dfs(root.right);
+  };
+  dfs(root);
+  return ans;
 };
 // @lc code=end
-
