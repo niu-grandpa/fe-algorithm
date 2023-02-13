@@ -18,16 +18,15 @@
  * @param {number} targetSum
  * @return {boolean}
  */
-var hasPathSum = function(root, targetSum) {
-
-  if(root==null){
-    return false
-  }
-  if(!root.left && !root.right){
-    return root.val ===targetSum
-  }
-  let offset = targetSum - root.val
-  return hasPathSum(root.left,offset) || hasPathSum(root.right,offset)
+var hasPathSum = function (root, targetSum) {
+  const dfs = (root, res) => {
+    if (!root) return false;
+    res += root.val;
+    if (!root.left && !root.right) {
+      return res === targetSum;
+    }
+    return dfs(root.left, res) || dfs(root.right, res);
+  };
+  return dfs(root, 0);
 };
 // @lc code=end
-
