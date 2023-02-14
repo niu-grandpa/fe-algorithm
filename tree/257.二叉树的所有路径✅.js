@@ -17,23 +17,18 @@
  * @param {TreeNode} root
  * @return {string[]}
  */
-var binaryTreePaths = function(root) {
-  let ret = []
-
-  const travese = (node,path=[])=>{
-    if(node===null){
-      return null
+var binaryTreePaths = function (root) {
+  const ans = [];
+  const dfs = (root, res) => {
+    if (!root) return;
+    res += `${root.val}->`;
+    if (root && !root.left && !root.right) {
+      ans.push(res.substring(0, res.length - 2));
+      return;
     }
-    if(node.left===null && node.right===null){
-      // 已经到叶子节点了
-      path.push(node.val)
-      ret.push(path.join('->'))
-    }
-    travese(node.left,path.concat(node.val))
-    travese(node.right,path.concat(node.val))
-  }
-  travese(root,[])
-  return ret
+    dfs(root.left);
+    dfs(root.right);
+  };
+  return ans;
 };
 // @lc code=end
-
