@@ -17,24 +17,21 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var largestValues = function(root) {
-  let ret = []
-  if(root===null){
-    return ret
-  }
-  let queue = [root]
-  while(queue.length){
-    let len = queue.length
-    let maxVal = queue[0].val
-    while(len--){
-      let node = queue.shift()
-      maxVal = maxVal>node.val ?maxVal:node.val
-      node.left && queue.push(node.left)
-      node.right && queue.push(node.right)
+var largestValues = function (root) {
+  if (!root) return [];
+  const queue = [root];
+  const ans = [];
+  while (queue.length) {
+    const temp = [];
+    let size = queue.length;
+    for (let i = 0; i < size; i++) {
+      const n = queue.shift();
+      temp.push(n.val);
+      n.left && queue.push(n.left);
+      n.right && queue.push(n.right);
     }
-    ret.push(maxVal)
+    ans.push(Math.max(...temp));
   }
-  return ret
+  return ans;
 };
 // @lc code=end
-
