@@ -19,24 +19,10 @@
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function (root, p, q) {
-  // 二分查找
-  const min = Math.min(p.val, q.val);
-  const max = Math.max(p.val, q.val);
-  while (root) {
-    // 介于p q区间的节点值便是答案
-    if (root.val >= min && root.val <= max) {
-      return root;
-    } else if (root.val > max) {
-      root = root.left;
-    } else {
-      root = root.right;
-    }
-  }
-  return root;
-  // if (!root || root === p || root === q) return root;
-  // const left = lowestCommonAncestor(root.left, p, q);
-  // const right = lowestCommonAncestor(root.right, p, q);
-  // if (left && right) return root;
-  // return left ?? right;
+  if (!root || root === p || root === q) return root;
+  const left = lowestCommonAncestor(root.left, p, q);
+  const right = lowestCommonAncestor(root.right, p, q);
+  if (left && right) return root;
+  return left ?? right;
 };
 // @lc code=end
