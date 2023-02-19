@@ -17,16 +17,8 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var countNodes = function(root) {
-  function travese(node){
-    if(node===null){
-      return 0
-    }
-    let leftNum = travese(node.left)
-    let rightNum = travese(node.right)
-    return leftNum + rightNum +1
-  }
-  return travese(root)
+var countNodes = function (root) {
+  if (!root) return 0;
+  return countNodes(root.left) + countNodes(root.right) + 1;
 };
 // @lc code=end
-
