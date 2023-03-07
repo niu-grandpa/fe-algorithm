@@ -19,23 +19,23 @@
  * @param {Node} root
  * @return {Node}
  */
-// [1]
-// [2,3]
-// 45,6,[,7]
 var connect = function (root) {
-  // 由于层序遍历存储的相对后一个节点必为右节点，那么当从队列取出一个节点时
-  // 判断队列是否不为空，不为空则说明当前节点可以设置它的next节点为它在队列
-  // 中的下一个节点
+  // [1,2,3,4]
+  // [2,3,4] 1 -> 2
+  // [3,4] 2 -> 3
   if (!root) return root;
   const queue = [root];
   while (queue.length) {
-    let size = queue.length;
-    while (size--) {
+    const size = queue.length;
+    for (let i = 0; i < size; i++) {
       const n = queue.shift();
-      if (size > 0) n.next = queue[0];
+      // 除了队列最后一个节点不用next赋值
+      // queue[0]就是前一个的右节点
+      if (i < size - 1) n.next = queue[0];
       n.left && queue.push(n.left);
       n.right && queue.push(n.right);
     }
   }
+  return root;
 };
 // @lc code=end
