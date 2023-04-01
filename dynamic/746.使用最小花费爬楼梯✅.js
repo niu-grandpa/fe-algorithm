@@ -11,14 +11,13 @@
  */
 // 规划这个最小值
 // dp 你到哪第一个台阶所需要的最小花费 是dp[i]
-var minCostClimbingStairs = function(cost) {
-  // [10,15,20]
-  // dp其实不需要一个这么长的数组
-  let dp = [cost[0],cost[1]]
-  for(let i=2;i<cost.length;i++){
-    dp[i] = Math.min(dp[i-1] ,dp[i-2])+cost[i] 
+var minCostClimbingStairs = function (cost) {
+  const len = cost.length;
+  const dp = Array(len + 1);
+  dp[0] = dp[1] = 0;
+  for (let i = 2; i <= len; i++) {
+    dp[i] = Math.min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
   }
-  return Math.min(dp[cost.length-1],dp[cost.length-2])
+  return dp[len];
 };
 // @lc code=end
-
